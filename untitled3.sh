@@ -3,6 +3,9 @@
 #curl $1 | grep -E "(https?:)?//[^/\s]+/\S+\.(jpg|png|gif)" -o | sed "s/^(https?)?\/\//https\:\/\//g" -r > urls.txt
 #get the line contain parameter about hash and ID info
 #sleep $[ ( $RANDOM % 10 )  ]s
+if ! [ -f ./`cat $1 |sed 's/.*\///g'` ]; then
+   exit 1
+fi
 d=`date +%s`
 echo d is ${d}
 curl $1 | grep -e 'download_video' | sed "s/.*download_video(//g" | sed "s/)\">.*//g" | sed "s/'//g"  > ${d}
