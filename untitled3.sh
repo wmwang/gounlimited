@@ -5,7 +5,8 @@
 #sleep $[ ( $RANDOM % 10 )  ]s
 echo $1 |sed 's/.*\///g'
 if [ -f ./`echo $1 |sed 's/.*\///g'` ]; then
-   exit 1
+   echo file is exist
+	exit 1
 fi
 d=`date +%s`
 echo d is ${d}
