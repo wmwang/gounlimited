@@ -3,7 +3,7 @@
 #curl $1 | grep -E "(https?:)?//[^/\s]+/\S+\.(jpg|png|gif)" -o | sed "s/^(https?)?\/\//https\:\/\//g" -r > urls.txt
 #get the line contain parameter about hash and ID info
 #sleep $[ ( $RANDOM % 10 )  ]s
-if ! [ -f ./`echo $1 |sed 's/.*\///g'` ]; then
+if [ -f ./`echo $1 |sed 's/.*\///g'` ]; then
    exit 1
 fi
 d=`date +%s`
