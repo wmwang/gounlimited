@@ -40,7 +40,8 @@ curl ${url}  --cookie cookies.txt | grep -e 'Direct Download Link' | sed "s/.*hr
 cat  ${d} | sed 's/.*\///g'
 #get the video file
 if ! [ -f ./`cat ${d}|sed 's/.*\///g'` ]; then
-   wget -i ${d} -c
+        touch `cat ${d}|sed 's/.*\///g'`
+	wget -i ${d} -c
 fi
 rm ${d}
 # Get full-res URLs instead of thumbnails and re-saving urls.txt
