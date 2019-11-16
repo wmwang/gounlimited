@@ -3,6 +3,15 @@
 #curl $1 | grep -E "(https?:)?//[^/\s]+/\S+\.(jpg|png|gif)" -o | sed "s/^(https?)?\/\//https\:\/\//g" -r > urls.txt
 #get the line contain parameter about hash and ID info
 #sleep $[ ( $RANDOM % 10 )  ]s
+
+
 echo $1
-echo $1 >> temp
-curl $1 | grep -e 'gounlimited.to' | sed "s/.*http/http/g"|sed "s/\" rel.*//g"  >> temp
+c="$(curl $1 | grep -e 'gounlimited.to' | sed "s/.*http/http/g"|sed "s/\" rel.*//g")"
+echo c is  ${c}
+if  [ -z "$c" ]; then
+   echo without URL
+   echo "==" >> temp
+   exit 1
+fi
+
+echo ${c}  >> temp
