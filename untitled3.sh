@@ -23,7 +23,7 @@ curl ${c} | grep -e 'download_video' | sed "s/.*download_video(//g" | sed "s/)\"
 n=0
 a=./urls.txt
 b=0
-echo url_include_hash is ${c}
+echo url_include_hash is ${d}
 e=0
 #get the ID info to $b and get the hash to $c
 for i in `cat ${d} | tr ',' '\n'` ; do
