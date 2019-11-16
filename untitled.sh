@@ -2,9 +2,17 @@
 # Get HTML of page from user's input, get all of the image links, and make sure URLs have HTTPs
 #curl $1 | grep -E "(https?:)?//[^/\s]+/\S+\.(jpg|png|gif)" -o | sed "s/^(https?)?\/\//https\:\/\//g" -r > urls.txt
 #get the line contain parameter about hash and ID info
+echo $1
+c="$(curl $1 | grep -e 'gounlimited.to' | sed "s/.*http/http/g"|sed "s/\" rel.*//g")"
+echo c is  ${c}
+if  [ -z "$c" ]; then
+   echo without URL
+   exit 1
+fi
+
 d=`date +%s`
 echo d is ${d}
-curl $1 | grep -e 'download_video' | sed "s/.*download_video(//g" | sed "s/)\">.*//g" | sed "s/'//g"  > ${d}
+curl ${c} | grep -e 'download_video' | sed "s/.*download_video(//g" | sed "s/)\">.*//g" | sed "s/'//g"  > ${d}
 
 n=0
 a=./urls.txt

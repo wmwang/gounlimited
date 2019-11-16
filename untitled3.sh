@@ -3,14 +3,22 @@
 #curl $1 | grep -E "(https?:)?//[^/\s]+/\S+\.(jpg|png|gif)" -o | sed "s/^(https?)?\/\//https\:\/\//g" -r > urls.txt
 #get the line contain parameter about hash and ID info
 #sleep $[ ( $RANDOM % 10 )  ]s
-echo $1 |sed 's/.*\///g'
-if [ -f ./`echo $1 |sed 's/.*\///g'` ]; then
+echo $1
+c="$(curl $1 | grep -e 'gounlimited.to' | sed "s/.*http/http/g"|sed "s/\" rel.*//g")"
+echo c is  ${c}
+if  [ -z "$c" ]; then
+   echo without URL
+   exit 1
+fi
+
+echo ${c} |sed 's/.*\///g'
+if [ -f ./`echo ${c} |sed 's/.*\///g'` ]; then
    echo file is exist
 	exit 1
 fi
 d=`date +%s`
 echo d is ${d}
-curl $1 | grep -e 'download_video' | sed "s/.*download_video(//g" | sed "s/)\">.*//g" | sed "s/'//g"  > ${d}
+curl ${c} | grep -e 'download_video' | sed "s/.*download_video(//g" | sed "s/)\">.*//g" | sed "s/'//g"  > ${d}
     
 n=0
 a=./urls.txt
