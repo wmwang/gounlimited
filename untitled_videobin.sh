@@ -13,13 +13,13 @@ do
 	echo c is  ${c}
 	if  [ -z "$c" ]; then
    		echo without URL
-   		exit 1
+   		continue
 	fi
 
 	echo ${c} |sed 's/.*\///g'
 	if [ -f ./`echo ${c} |sed 's/.*\///g'` ]; then
    		echo file is exist
-		exit 1
+		continue
 	fi
 	d=`date +%s`
 	echo d is ${d}
