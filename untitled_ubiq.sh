@@ -6,22 +6,27 @@
 input="./gg"
 while IFS= read -r line
 do
+   #!ech the line of URL from ubiq_file_com
    echo $line
    c="$(curl $line | grep -e 'ubiqfile.com' | sed "s/.*http/http/g"|sed "s/\" rel.*//g")"
    d=`echo ${c}|sed 's/.*\///g'|sed 's/.html//g'`
+   #! get the right URL form the web
+   #!print the info about the full URL
    echo c is  ${c}
+   #!print the tail of the URL
    echo d is  ${d}
+   #!if the url is not correct, then print without URL, and exit the code
    if  [ -z "$c" ]; then
       echo without URL
       continue
    fi
-
+   
+   #! if file has exist(depend on the file name, then show the information about the file is exist, and leave the code
    echo ${c} |sed 's/.*\///g'
    if [ -f ./`echo ${d} ` ]; then
       echo file is exist
       continue
    fi
-  
 #get the video file
    if ! [ -f ./`echo ${d}` ]; then
       touch `echo ${c}|sed 's/.*\///g'`
