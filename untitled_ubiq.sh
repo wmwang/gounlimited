@@ -8,7 +8,9 @@ while IFS= read -r line
 do
    echo $line
    c="$(curl $line | grep -e 'ubiqfile.com' | sed "s/.*http/http/g"|sed "s/\" rel.*//g")"
+   d=`echo ${c}|sed 's/.*\///g'|sed 's/.html/g'`
    echo c is  ${c}
+   echo d is  ${d}
    if  [ -z "$c" ]; then
       echo without URL
       continue
@@ -21,7 +23,7 @@ do
    fi
   
 #get the video file
-   if ! [ -f ./`echo ${c}|sed 's/.*\///g'` ]; then
+   if ! [ -f ./`echo ${c}` ]; then
       touch `echo ${c}|sed 's/.*\///g'`r
       curl --cookie cookies_ubiq.txt  -J -L ${c} -C - --output ${d} 
    fi
