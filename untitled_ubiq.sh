@@ -21,11 +21,10 @@ do
    fi
   
 #get the video file
-   if ! [ -f ./`cat ${d}|sed 's/.*\///g'` ]; then
-      touch `cat ${d}|sed 's/.*\///g'`
+   if ! [ -f ./`echo ${c}|sed 's/.*\///g'` ]; then
+      touch `echo ${c}|sed 's/.*\///g'`r
       curl --cookie cookies_ubiq.txt  -J -L ${c} -C - --output ${d} 
    fi
-   rm ${d}
 
 done < "$input"
 # Get full-res URLs instead of thumbnails and re-saving urls.txt
