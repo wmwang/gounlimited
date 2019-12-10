@@ -29,7 +29,7 @@ do
    fi
 #get the video file
    if ! [ -f ./`echo ${d}` ]; then
-      touch `echo ${c}|sed 's/.*\///g'`
+      touch ${d} 
       curl --cookie cookies_ubiq.txt  -J -L ${c} -C - --output ${d} 
    fi
 
