@@ -21,7 +21,7 @@ do
    fi
    d=`date +%s`
    echo d is ${d}
-   curl ${c} | grep -e 'download_video' | sed "s/.*download_video(//g" | sed "s/)\">.*//g" | sed "s/'//g"  > ${d}
+   curl -k ${c} | grep -e 'download_video' | sed "s/.*download_video(//g" | sed "s/)\">.*//g" | sed "s/'//g"   > ${d} 
     
    n=0
    a=./urls.txt
@@ -47,10 +47,10 @@ do
 #show URL
    echo url is ...${url}
 # require the realy video file URL
-   curl ${url}  --cookie cookies.txt | grep -e 'Direct Download Link' | sed "s/.*href=\"//g" |  sed "s/\">D.*//g" > ${d} 
+   curl -k ${url}  --cookie cookies.txt | grep -e 'Direct Download Link' | sed "s/.*href=\"//g" |  sed "s/\">D.*//g"  > ${d} 
    cat  ${d} | sed 's/.*\///g'
 #get the video file
-   if ! [ -f ./`cat ${d}|sed 's/.*\///g'` ]; then
+   if ! [ -e ./`cat ${d}|sed 's/.*\///g'` ]; then
       touch `cat ${d}|sed 's/.*\///g'`
       wget -i ${d} -c
    fi
