@@ -23,8 +23,8 @@ do
 	fi
 	d=`date +%s`
 	echo d is ${d}
-	e="$(wget -qO- ${c} | grep -e 'm3u8'| sed "s/m3u8.*/m3u8/g"| sed "s/.*http/http/g")"
-        echo e is $e
+	wget -qO- ${c} | grep -e 'm3u8'| sed "s/m3u8.*/m3u8/g"| sed "s/.*http/http/g" > ${d}
+    
 	n=0
 	a=./urls.txt
 	b=0
@@ -35,11 +35,10 @@ do
 	if ! [ -f ./`echo ${c} |sed 's/.*\///g'` ]; then
         touch `echo ${c} |sed 's/.*\///g'`
 		#wget -i ${d} -c -O `echo $line |sed 's/.*\///g'`_`echo ${c} |sed 's/.*\///g'`
-		ffmpeg  -i ${e} -c copy `echo $line |sed 's/.*\///g'`_`echo ${c} |sed 's/.*\///g'`.ts
+		ffmpeg  -i `cat ${d}` -c copy `echo $line |sed 's/.*\///g'`_`echo ${c} |sed 's/.*\///g'`.ts
 	fi
 	rm ${d}
 
-done < "$input"
 # Get full-res URLs instead of thumbnails and re-saving urls.txt
 
 #sed -Ei "s/\/thumb//g; s/\/[0-9]+px-.+\.(jpg|png)$//g" urls.txt
