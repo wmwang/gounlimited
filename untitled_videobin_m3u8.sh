@@ -23,7 +23,7 @@ do
 	fi
 	d=`date +%s`
 	echo d is ${d}
-	wget -qO- ${c} | grep -e 'm3u8'| sed "s/m3u8.*/m3u8/g"| sed "s/.*http/http/g"|  > ${d}
+	wget -qO- ${c} | grep -e 'm3u8'| sed "s/m3u8.*/m3u8/g"| sed "s/.*http/http/g" > ${d}
     
 	n=0
 	a=./urls.txt
@@ -35,7 +35,7 @@ do
 	if ! [ -f ./`echo ${c} |sed 's/.*\///g'` ]; then
         touch `echo ${c} |sed 's/.*\///g'`
 		#wget -i ${d} -c -O `echo $line |sed 's/.*\///g'`_`echo ${c} |sed 's/.*\///g'`
-		ffmpeg -protocol_whitelist file,https,https,tcp,tls,crypto -i ${d} -c copy `echo $line |sed 's/.*\///g'`_`echo ${c} |sed 's/.*\///g'`
+		ffmpeg  -i `cat ${d}` -c copy `echo $line |sed 's/.*\///g'`_`echo ${c} |sed 's/.*\///g'`.ts
 	fi
 	rm ${d}
 
