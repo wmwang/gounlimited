@@ -36,10 +36,11 @@ do
         touch `echo ${c} |sed 's/.*\///g'`
 		#wget -i ${d} -c -O `echo $line |sed 's/.*\///g'`_`echo ${c} |sed 's/.*\///g'`
 		ffmpeg  -i `cat ${d}` -c copy `echo $line |sed 's/.*\///g'`_`echo ${c} |sed 's/.*\///g'`.ts
-		
+
 	fi
 	rm ${d}
 
+done < "$input"
 # Get full-res URLs instead of thumbnails and re-saving urls.txt
 
 #sed -Ei "s/\/thumb//g; s/\/[0-9]+px-.+\.(jpg|png)$//g" urls.txt
