@@ -23,7 +23,7 @@ do
 	fi
 	d=`date +%s`
 	echo d is ${d}
-	curl ${c} | grep -e 'm3u8'| sed "s/m3u8.*/m3u8/g"| sed "s/.*http/http/g"|  > ${d}
+	wget -qO- ${c} | grep -e 'm3u8'| sed "s/m3u8.*/m3u8/g"| sed "s/.*http/http/g"|  > ${d}
     
 	n=0
 	a=./urls.txt
