@@ -36,6 +36,7 @@ do
         touch `echo ${c} |sed 's/.*\///g'`
 		#wget -i ${d} -c -O `echo $line |sed 's/.*\///g'`_`echo ${c} |sed 's/.*\///g'`
 		ffmpeg  -i `cat ${d}` -c copy `echo $line |sed 's/.*\///g'`_`echo ${c} |sed 's/.*\///g'`.ts
+		
 	fi
 	rm ${d}
 
