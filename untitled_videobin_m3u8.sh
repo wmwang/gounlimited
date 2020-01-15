@@ -9,7 +9,7 @@ while IFS= read -r line
 do
   	echo $line
 
-	c="$(curl $line | grep -e 'videobin.co' )"
+	c="$(curl $line | grep -e 'videobin.co' | sed "s/.*http/http/g"|sed "s/\" rel.*//g")"
 	echo c is  ${c}
 	if  [ -z "$c" ]; then
    		echo without URL
