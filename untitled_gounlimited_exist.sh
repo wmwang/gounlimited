@@ -7,7 +7,7 @@ input="./gg"
 while IFS= read -r line
 do
    echo $line
-   c="$(curl $line | grep -e 'gounlimited.to' | sed "s/.*http/http/g"|sed "s/\" rel.*//g")"
+   c="$(wget -qO-  $line | grep -e 'gounlimited.to' | sed "s/.*http/http/g"|sed "s/\" rel.*//g")"
    echo c is  ${c}
    if  [ -z "$c" ]; then
       echo $line >> no_gounlimited.txt
