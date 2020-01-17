@@ -50,6 +50,8 @@ do
    wget -qO- ${url}  --load-cookies cookies.txt | grep -e 'Direct Download Link' | sed "s/.*href=\"//g" |  sed "s/\">D.*//g"  > ${d} 
 #get the video file
    
+      sleep 30
+      cat ${line} >> gounlimited_url.txt
       cat ${d} >> gounlimited_url.txt
 
    
