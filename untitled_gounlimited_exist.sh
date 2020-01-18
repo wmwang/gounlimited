@@ -10,10 +10,10 @@ do
    c="$(wget -qO-  $line | grep -e 'gounlimited.to' | sed "s/.*http/http/g"|sed "s/\" rel.*//g")"
    echo c is  ${c}
    if  [ -z "$c" ]; then
-      echo $line >> no_gounlimited.txt
+      #echo $line >> no_gounlimited.txt
       continue
    fi
-   echo $line >> have_gounlimited.txt
+   echo ${line}_${c} >> have_gounlimited_list.txt
 
 done < "$input"
 # Get full-res URLs instead of thumbnails and re-saving urls.txt
