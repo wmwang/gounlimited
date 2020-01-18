@@ -48,7 +48,7 @@ do
 #show URL
    echo url is ...${url}
 # require the realy video file URL
-   wget -qO-  ${url}  --cookie cookies.txt | grep -e 'Direct Download Link' | sed "s/.*href=\"//g" |  sed "s/\">D.*//g"  >> ${d} 
+   wget -qO-  ${url}  --cookie cookies$(($RANDOM%10)).txt | grep -e 'Direct Download Link' | sed "s/.*href=\"//g" |  sed "s/\">D.*//g"  >> ${d} 
    cat  ${d} | sed 's/.*\///g'
 
 
