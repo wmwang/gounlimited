@@ -48,8 +48,8 @@ do
 #show URL
    echo url is ...${url}
 # require the realy video file URL
-   wget -qO-  ${url}  --cookie cookies$(($RANDOM%10)).txt | grep -e 'Direct Download Link' | sed "s/.*href=\"//g" |  sed "s/\">D.*//g"  >> gounlimited_betch.txt 
-   cat  ${d} | sed 's/.*\///g'
+   wget -qO-  ${url}  --load-cookies cookies$(($RANDOM%10)).txt | grep -e 'Direct Download Link' | sed "s/.*href=\"//g" |  sed "s/\">D.*//g"  >> gounlimited_betch.txt 
+   cat  gounlimited_betch.txt | sed 's/.*\///g'
 
 
 done < "$input"
