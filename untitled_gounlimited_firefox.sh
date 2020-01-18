@@ -4,6 +4,7 @@
 #get the line contain parameter about hash and ID info
 #sleep $[ ( $RANDOM % 10 )  ]s
 input="./gg"
+rm gounlimited_betch.txt
 while IFS= read -r line
 do
    echo $line
