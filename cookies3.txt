@@ -1,0 +1,15 @@
+# HTTP Cookie File downloaded with cookies.txt by Genuinous @genuinous
+# This file can be used by wget, curl, aria2c and other standard compliant tools.
+# Usage Examples:
+#   1) wget -x --load-cookies cookies.txt "https://gounlimited.to/?op=my_account"
+#   2) curl --cookie cookies.txt "https://gounlimited.to/?op=my_account"
+#   3) aria2c --load-cookies cookies.txt "https://gounlimited.to/?op=my_account"
+#
+gounlimited.to	FALSE	/rgwzlh56x4k1	FALSE	1579345065	file_id	6212131
+gounlimited.to	FALSE	/rgwzlh56x4k1	FALSE	1579345065	aff	12624
+gounlimited.to	FALSE	/rgwzlh56x4k1	FALSE	1579345065	ref_url	https%3A%2F%2Fxxxstreams.org%2Fher-first-bbc-2019%2F
+gounlimited.to	FALSE	/	FALSE	1584366594	adcashufpv3	132153443818317492431678277099
+.gounlimited.to	TRUE	/	FALSE	1579787368	494668b4c0ef4d25bda4e75c27de2817	fed8aa27-108f-4163-b848-f72983d3ad0b:3:1
+.gounlimited.to	TRUE	/	FALSE	0	per_page	
+.gounlimited.to	TRUE	/	FALSE	1581914092	xfsts	v3rlj1wsn6x9vhyo
+.gounlimited.to	TRUE	/	FALSE	1594874092	login	tr9203
