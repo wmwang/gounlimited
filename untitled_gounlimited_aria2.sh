@@ -20,7 +20,7 @@ do
       echo file is exist
       continue
    fi
-   d=gounlimited_betch
+   d=temp
    echo d is ${d}
    wget -qO-  ${c} | grep -e 'download_video' | sed "s/.*download_video(//g" | sed "s/)\">.*//g" | sed "s/'//g"   > ${d} 
     
@@ -48,13 +48,13 @@ do
 #show URL
    echo url is ...${url}
 # require the realy video file URL
-   wget -qO-  ${url}  --cookie cookies$(($RANDOM%10)).txt | grep -e 'Direct Download Link' | sed "s/.*href=\"//g" |  sed "s/\">D.*//g"  >> ${d} 
+   wget -qO-  ${url}  --cookie cookies$(($RANDOM%10)).txt | grep -e 'Direct Download Link' | sed "s/.*href=\"//g" |  sed "s/\">D.*//g"  >> gounlimited_betch.txt 
    cat  ${d} | sed 's/.*\///g'
 
 
 done < "$input"
 
-aria2c -c -i ${d}  -j 3 -x 3 -s 3
+#aria2c -c -i gounlimited_betch.txt  -j 3 -x 3 -s 3
 # Get full-res URLs instead of thumbnails and re-saving urls.txt
 
 #sed -Ei "s/\/thumb//g; s/\/[0-9]+px-.+\.(jpg|png)$//g" urls.txt
