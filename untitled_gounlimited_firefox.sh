@@ -23,7 +23,7 @@ do
    fi
    d=temp
    echo d is ${d}
-   wget -qO-  ${c} | grep -e 'download_video' | sed "s/.*download_video(//g" | sed "s/)\">.*//g" | sed "s/'//g"   > ${d} 
+   curl ${c} | grep -e 'download_video' | sed "s/.*download_video(//g" | sed "s/)\">.*//g" | sed "s/'//g"   > ${d} 
     
    n=0
    a=./urls.txt
