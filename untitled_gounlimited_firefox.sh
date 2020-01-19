@@ -45,7 +45,7 @@ do
       fi
    done
 #merge to complete URL
-   url="https://gounlimited.to/dl?op=download_orig&id="${b}"&mode=n&hash="${c}""
+   url="start firefox \"https://gounlimited.to/dl?op=download_orig&id="${b}"&mode=n&hash="${c}"\""
 #show URL
    echo ${url} >> gounlimited_betch.txt
    
