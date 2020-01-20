@@ -22,7 +22,7 @@ do
    fi
    d=temp
    echo d is ${d}
-   wget -qO-  ${c} | grep -e 'download_video' | sed "s/.*download_video(//g" | sed "s/)\">.*//g" | sed "s/'//g"   > ${d} 
+   curl ${c}  | grep -e 'download_video' | sed "s/.*download_video(//g" | sed "s/)\">.*//g" | sed "s/'//g"   > ${d} 
     
    n=0
    a=./urls.txt
@@ -37,7 +37,7 @@ do
       if [ $n -eq 1 ]
       then
          #statementsb
-         b=${i}
+         b=${i}          
          #echo b is ...${b}
       elif [ $n -eq 3 ]; then
          c=${i}
@@ -45,12 +45,20 @@ do
    done
 #merge to complete URL
    url="https://gounlimited.to/dl?op=download_orig&id="${b}"&mode=n&hash="${c}""
+   data="op=download_orig&id="${b}"&mode=n&hash="${c}"" 
 #show URL
-   echo url is ...${url}
+   echo url is ...${url} 
+   echo data is ...${data}
 # require the realy video file URL
-   wget -qO-  ${url}  --load-cookies cookies$(($RANDOM%10)).txt | grep -e 'Direct Download Link' | sed "s/.*href=\"//g" |  sed "s/\">D.*//g"  >> gounlimited_betch.txt 
+   curl ${url}  --cookie ../cookies.txt --data $data | grep -e 'Direct Download Link' | sed "s/.*href=\"//g" |  sed "s/\">D.*//g"  >> gounlimited_betch.txt 
    cat  gounlimited_betch.txt | sed 's/.*\///g'
-
+   if [ `cat gounlimited_betch.txt |wc -l` -eq 5 ]
+   then
+      telegram -t 1012817406:AAFOwSdJhx-Cu9GUJ0fGslqjRNTIlEOZTwg  -c @isosoman `cat gounlimited_betch.txt `
+      aria2c -c -i gounlimited_betch.txt  -j 4 -x 3 -s 3
+      telegram -t 1012817406:AAFOwSdJhx-Cu9GUJ0fGslqjRNTIlEOZTwg  -c @isosoman "OK"
+      rm gounlimited_betch.txt
+   fi
 
 done < "$input"
 

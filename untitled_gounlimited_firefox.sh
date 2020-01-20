@@ -4,7 +4,7 @@
 #get the line contain parameter about hash and ID info
 #sleep $[ ( $RANDOM % 10 )  ]s
 input="./gg"
-rm gounlimited_betch.txt
+rm gounlimited_betch.cmd
 while IFS= read -r line
 do
    echo $line
@@ -47,7 +47,7 @@ do
 #merge to complete URL
    url="start firefox \"https://gounlimited.to/dl?op=download_orig&id="${b}"&mode=n&hash="${c}"\""
 #show URL
-   echo ${url} >> gounlimited_betch.txt
+   echo ${url} >> gounlimited_betch.cmd
    
 # require the realy video file URL
    #wget -qO-  ${url}  --load-cookies cookies$(($RANDOM%10)).txt | grep -e 'Direct Download Link' | sed "s/.*href=\"//g" |  sed "s/\">D.*//g"  >> gounlimited_betch.txt 
