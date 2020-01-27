@@ -48,7 +48,7 @@ do
    if [ `cat ture_url |wc -l` -eq 10 ]
    then
       #telegram -t 1012817406:AAFOwSdJhx-Cu9GUJ0fGslqjRNTIlEOZTwg  -c @isosoman `cat gounlimited_betch.txt `
-      aria2c -c -i ture_url  -j 5 -x 3 -s 3 
+      aria2c -c -i ture_url  -j 5 -x 3 -s 3 --file-allocation=none
       telegram -t 1012817406:AAFOwSdJhx-Cu9GUJ0fGslqjRNTIlEOZTwg  -c @isosoman "finish_section_download"
       rm ture_url
    fi
