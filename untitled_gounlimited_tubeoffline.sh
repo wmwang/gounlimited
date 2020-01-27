@@ -27,9 +27,14 @@ do
       echo without URL
       continue
    fi
-   curl $emb_url |grep -e "fs" |sed "s/.*http/http/g" |sed "s/\" rel.*//g" >> ture_url
+   temp_ture_url=`curl $emb_url |grep -e "fs" |sed "s/.*http/http/g" |sed "s/\" rel.*//g"`
+   if  [ -z "$temp_ture_url" ]; then
+      echo without temp_ture_url
+      continue
+   fi
+   echo $temp_ture_url >> ture_url
    echo ${gounlimited_url} |sed 's/.*\// out=/g' >>ture_url
-   echo ture_url is `echo $ture_url`
+   echo ture_url is `cat ture_url`
 
    if [ -f ./`echo ${gounlimited_url} |sed 's/.*\///g'` ]; then
       echo file is exist
