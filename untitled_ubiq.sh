@@ -8,7 +8,7 @@ while IFS= read -r line
 do
    #!ech the line of URL from ubiq_file_com
    echo $line
-   c="$(curl $line | grep -e 'ubiqfile.com' | sed "s/.*http/http/g"|sed "s/\" rel.*//g")"
+   c="$(wget -qO- $line  | sed "s/http/\nhttp/g"| grep -e 'ubiqfile.com' | sed "s/.*http/http/g"|sed "s/\" rel.*//g")"
    d=`echo ${c}|sed 's/.*\///g'|sed 's/.html//g'`
    #! get the right URL form the web
    #!print the info about the full URL
